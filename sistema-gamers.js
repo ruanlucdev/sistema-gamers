@@ -80,7 +80,7 @@ function calcularMedia() {
     totalPontos = totalPontos + time[i].pontuacao;
   }
   let mediaPontos = totalPontos / time.length;
-  console.log("A média total da equipe é: "+ mediaPontos +" pontos.");
+  console.log("A média total da equipe é: "+ mediaPontos.toFixed(2) +" pontos.");
 }
 
 function fazerBusca () {
@@ -90,23 +90,16 @@ function fazerBusca () {
     }
   
   let pesquisaJogador = prompt("Digite o nome do jogador: ");
-  let indexJogador = -1;
   
   for(let i = 0; i < time.length; i++){
     if(time[i].nome == pesquisaJogador){
-      indexJogador = i;
       jogadorProcurado = time[i];
       console.log((i + 1)+". " + jogadorProcurado.nome + " | Função: "+ jogadorProcurado.funcao + " | Pontuação: " + jogadorProcurado.pontuacao);
-      break;
+      return;
     }  
   }
-  
-  if(indexJogador == -1){
-    console.log("Jogador não encontrado.");
-    return;
+    console.log("Nenhum jogador encontrado.")
   }
-}
-
 
 while(continuar == true){
 
