@@ -8,11 +8,13 @@ function mostrarMenu () {
   console.log("1. CADASTRAR");
   console.log("2. DELETAR");
   console.log("3. MOSTRAR EQUIPE");
-  console.log("4. CÁLCULO DA MÉDIA DA EQUIPE")
-  console.log("5. SAIR")
+  console.log("4. FAZER BUSCA")
+  console.log("5. CÁLCULO DA MÉDIA DA EQUIPE");
+  console.log("6. SAIR");
   console.log("==============================");
   console.log("\n");
 }
+
 function cadastrarJogador () {
   let nomeJogador = prompt("Digite o nome do usuário: ");
   let funcaoJogador = prompt("Digite a função do jogador: ");
@@ -66,7 +68,7 @@ function mostrarEquipe() {
   }
 }
 
-function calculoMedia() {
+function calcularMedia() {
   if(time.length == 0){
     console.log("Nenhum jogador cadastrado na equipe.");
     return;
@@ -79,6 +81,30 @@ function calculoMedia() {
   }
   let mediaPontos = totalPontos / time.length;
   console.log("A média total da equipe é: "+ mediaPontos +" pontos.");
+}
+
+function fazerBusca () {
+  if(time.length == 0){
+    console.log("Nenhum jogador cadastrado na equipe.");
+    return;
+    }
+  
+  let pesquisaJogador = prompt("Digite o nome do jogador: ");
+  let indexJogador = -1;
+  
+  for(let i = 0; i < time.length; i++){
+    if(time[i].nome == pesquisaJogador){
+      indexJogador = i;
+      jogadorProcurado = time[i];
+      console.log((i + 1)+". " + jogadorProcurado.nome + " | Função: "+ jogadorProcurado.funcao + " | Pontuação: " + jogadorProcurado.pontuacao);
+      break;
+    }  
+  }
+  
+  if(indexJogador == -1){
+    console.log("Jogador não encontrado.");
+    return;
+  }
 }
 
 
@@ -97,9 +123,13 @@ while(continuar == true){
   mostrarEquipe();
   }
   else if(opcao == "4"){
-    calculoMedia();
+    fazerBusca();
   }
   else if(opcao == "5"){
+    calcularMedia();
+  }
+  
+  else if(opcao == "6"){
   continuar = false;
   }
   else{
