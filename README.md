@@ -152,7 +152,7 @@ Todas as rotinas que exigem elementos (`deletar`, `buscar`, `calcular média`) r
 1. Certifique-se de ter o **[Node.js](https://nodejs.org/)** instalado.
 2. Abra o terminal na pasta do projeto:
    ```bash
-   cd "Módulo 2"
+   cd "Users/Pasta do Projeto"
    ```
 3. Instale as dependências:
    ```bash
