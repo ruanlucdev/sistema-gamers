@@ -40,10 +40,16 @@ function deletarJogador() {
     return;
     }
   
-  let nomeDeletado = prompt("Digite o nome a ser deletado: ");
+  let nomeDeletado = prompt("Digite o nome a ser deletado: ").trim().toLowerCase();
   let indexDeletado = -1;
+  
+  if (nomeDeletado === "") {
+    console.log("Nome inválido.");
+    return;
+  }
+
   for(let i = 0; i < time.length; i++){
-    if(time[i].nome == nomeDeletado){
+    if(time[i].nome.trim().toLowerCase().includes(nomeDeletado)){
       indexDeletado = i;
       break;
     }
@@ -53,9 +59,9 @@ function deletarJogador() {
     console.log("Jogador não encontrado.");
     return;
     }
-
+    let nomeRemovido = time[indexDeletado].nome;
     time.splice(indexDeletado, 1);
-    console.log("Jogador ",nomeDeletado," deletado com sucesso.");
+    console.log("Jogador ",nomeRemovido," deletado com sucesso.");
 }
 
 function mostrarEquipe() {
@@ -89,17 +95,27 @@ function fazerBusca () {
     return;
     }
   
-  let pesquisaJogador = prompt("Digite o nome do jogador: ");
+  let pesquisaJogador = prompt("Digite o nome do jogador: ").trim().toLowerCase();
+  
+  if (pesquisaJogador == "") {
+    console.log("Busca em branco. Digite um nome válido.");
+    return;
+  }
+
+  let encontrou = false;
+  console.log("\n===== RESULTADO DA BUSCA =====");
   
   for(let i = 0; i < time.length; i++){
-    if(time[i].nome == pesquisaJogador){
-      jogadorProcurado = time[i];
+    if(time[i].nome.trim().toLowerCase().includes(pesquisaJogador)){
+      let jogadorProcurado = time[i];
       console.log((i + 1)+". " + jogadorProcurado.nome + " | Função: "+ jogadorProcurado.funcao + " | Pontuação: " + jogadorProcurado.pontuacao);
-      return;
+      encontrou = true;
     }  
   }
-    console.log("Nenhum jogador encontrado.")
+    if(encontrou = false){
+      console.log("Nenhum jogador encontrado.")
   }
+}
 
 while(continuar == true){
 
@@ -131,6 +147,3 @@ while(continuar == true){
 }
   
   
-  
-
-
