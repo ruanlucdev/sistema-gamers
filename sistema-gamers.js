@@ -9,8 +9,9 @@ function mostrarMenu () {
   console.log("2. DELETAR");
   console.log("3. MOSTRAR EQUIPE");
   console.log("4. FAZER BUSCA")
-  console.log("5. CÁLCULO DA MÉDIA DA EQUIPE");
-  console.log("6. SAIR");
+  console.log("5. ATUALIZAR PONTUAÇÃO");
+  console.log("6. CÁLCULO DA MÉDIA DA EQUIPE");
+  console.log("7. SAIR");
   console.log("==============================");
   console.log("\n");
 }
@@ -112,10 +113,36 @@ function fazerBusca () {
       encontrou = true;
     }  
   }
-    if(encontrou = false){
+    if(encontrou == false){
       console.log("Nenhum jogador encontrado.")
   }
 }
+
+function atualizarPontuacao() {
+  let atualizarJogador = prompt("Digite o nome do jogador a atualizar os pontos: ").trim().toLowerCase();
+  let pontosAdicionais = Number(prompt("Digite os pontos a adicionar: "));
+
+  if(time.length == 0) {
+    console.log("Nenhum jogador cadastrado na equipe.");
+    return;
+  }
+
+  if (atualizarJogador == "") {
+    console.log("Busca em branco. Digite um nome válido.");
+    return;
+  }
+
+  for(let i = 0; i < time.length; i++) {
+    if(time[i].nome.trim().toLowerCase().includes(atualizarJogador)) {
+      let jogadorProcurado = time[i];
+      time[i].pontuacao = time[i].pontuacao + pontosAdicionais;
+      console.log("A pontuação do jogador", jogadorProcurado.nome, "foi atualizada.");
+      console.log((i + 1)+". " + jogadorProcurado.nome + " | Função: "+ jogadorProcurado.funcao + " | Pontuação: " + jogadorProcurado.pontuacao);
+      return;
+    }
+  }
+}
+
 
 while(continuar == true){
 
@@ -123,23 +150,25 @@ while(continuar == true){
   let opcao = prompt("Digite a opção desejada: ");
 
   if(opcao == "1"){
-  cadastrarJogador();
+    cadastrarJogador();
   }
   else if(opcao == "2"){
-  deletarJogador();
+    deletarJogador();
   }
   else if(opcao == "3"){
-  mostrarEquipe();
+    mostrarEquipe();
   }
   else if(opcao == "4"){
     fazerBusca();
   }
   else if(opcao == "5"){
+    atualizarPontuacao();
+  }
+  else if(opcao == "6"){
     calcularMedia();
   }
-  
-  else if(opcao == "6"){
-  continuar = false;
+  else if(opcao == 7){
+    continuar = false;
   }
   else{
   console.log("Opção invalida, tente novamente.");
